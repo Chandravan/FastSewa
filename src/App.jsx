@@ -1,51 +1,47 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navigation from './components/Navbar'
-import Home from './pages/Home'
 import { useState } from 'react'
+import Navigation from './components/Navbar'
+import HomePage from './pages/HomePage'
+import { services } from './data/services'
+import ServiceDetailsPage from './pages/ServiceDetailsPage'
+import Footer from './components/Footer'
 
 function App() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-    const services = [
-        { id: 'construction', name: 'Construction' },
-        { id: 'security', name: 'Security Guard' },
-        { id: 'legal', name: 'Legal & GST' },
-        { id: 'medical', name: 'Medical Services' },
-        { id: 'land', name: 'Land Verification' },
-        { id: 'repair', name: 'Repair & Maintenance' }
-    ]
-
     return (
         <>
             <Navigation
+                services={services}
                 mobileMenuOpen={mobileMenuOpen}
                 setMobileMenuOpen={setMobileMenuOpen}
-                services={services}
             />
 
             <Routes>
                 <Route
                     path="/"
-                    element={<Home />}
+                    element={<HomePage services={services} />}
                 />
                 <Route
                     path="/services/:serviceId"
-                    //  element={<ServicePage />}
+                    element={<ServiceDetailsPage services={services} />}
                 />
                 <Route
                     path="/about"
-                    // element={<About />}
+                    element={<div>About Page</div>}
                 />
                 <Route
                     path="/contact"
-                    // element={<Contact />}
+                    element={<div>Contact Page</div>}
                 />
                 <Route
                     path="/get-started"
-                    //  element={<Start />}
+                    element={<div>Start Page</div>}
                 />
             </Routes>
+            <Footer />
         </>
     )
 }
+
 export default App

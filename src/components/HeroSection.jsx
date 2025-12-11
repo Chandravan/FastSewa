@@ -33,12 +33,4 @@ const HeroSection = () => {
     )
 }
 
-const Home = () => {
-    return (
-        <>
-            <HeroSection />
-        </>
-    )
-}
-
-export default Home
+export default HeroSection
